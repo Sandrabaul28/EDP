@@ -1,15 +1,27 @@
 <?php
 require_once "config.php"; 
 
-$id = $fullname = $address = $age = $birthdate = $contact = $email = "";
-$id_error = $fullname_error = $address_error = $age_error = $birthdate_error = $contact_error = $email_error = "";
+$id = $firstname = $middlename = $lastname = $address = $age  = $contact = $email = "";
+$id_error = $firstname_error = $middlename_error = $laststname_error = $address_error = $age_error = $contact_error = $email_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fullname = trim($_POST["fullname"]); 
-    if (empty($fullname)) {
-        $fullname_error = "fullname is required.";
+    $firstname = trim($_POST["firstname"]); 
+    if (empty($firstname)) {
+        $firstname_error = "firstname is required.";
     } else {
-        $fullname = $fullname;
+        $firstname = $firstname;
+    }
+    $middlename = trim($_POST["middlename"]); 
+    if (empty($middlename)) {
+        $middlename_error = "middlename is required.";
+    } else {
+        $middlename = $middlename;
+    }
+    $lastname = trim($_POST["lastname"]); 
+    if (empty($lastname)) {
+        $lastname_error = "lastname is required.";
+    } else {
+        $lastname = $lastname;
     }
 
     $address = trim($_POST["address"]);
@@ -50,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($fullname_error) && empty($address_error) && empty($age_error) && empty($birthdate_error) && empty($contact_error) && empty($email_error)) {
-          $sql = "INSERT INTO `info` (id,`fullname`, `address`, `age`, `birthdate`, `contact`,  `email`) VALUES (id,'$fullname', '$address', '$age', '$birthdate', '$contact', '$email')";
+          $sql = "INSERT INTO `info` (id,`firstname`, `middlename`, `lastname`, `address`, `age`, `contact`,  `email`) VALUES (id,'firstname', '$middlename', '$lastname', '$address', '$age', '$contact', '$email')";
 
 
-          if (mysqli_query($conn, $sql)) {
+    if (mysqli_query($conn, $sql)) {
               header("location: index.php");
           } else {
                echo "Something went wrong. Please try again later.";
@@ -87,10 +99,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
-                        <div class="form-group <?php echo (!empty($fullname_error)) ? 'has-error' : ''; ?>">
-                            <label>Fullname:</label>
-                            <input type="text" name="fullname" class="form-control" value="">
-                            <span class="help-block"><?php echo $fullname_error;?></span>
+                        <div class="form-group <?php echo (!empty($firstname_error)) ? 'has-error' : ''; ?>">
+                            <label>Firstname:</label>
+                            <input type="text" name="firstname" class="form-control" value="">
+                            <span class="help-block"><?php echo $firstname_error;?></span>
+                        </div>
+
+                        <div class="form-group <?php echo (!empty($middlename_error)) ? 'has-error' : ''; ?>">
+                            <label>Middlename:</label>
+                            <input type="text" name="middlename" class="form-control" value="">
+                            <span class="help-block"><?php echo $middlename_error;?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($lastname_error)) ? 'has-error' : ''; ?>">
+                            <label>Lastname:</label>
+                            <input type="text" name="lastname" class="form-control" value="">
+                            <span class="help-block"><?php echo $lastname_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($address_error)) ? 'has-error' : ''; ?>">
@@ -105,11 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="help-block"><?php echo $age_error;?></span>
                         </div>
 
-                        <div class="form-group <?php echo (!empty($birthdate_error)) ? 'has-error' : ''; ?>">
-                            <label>Birth Date:</label>
-                            <input type="date" name="birthdate" class="form-control" value="">
-                            <span class="help-block"><?php echo $birthdate_error;?></span>
-                        </div>
 
                         <div class="form-group <?php echo (!empty($contact_error)) ? 'has-error' : ''; ?>">
                             <label>Contact:</label>

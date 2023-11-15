@@ -31,14 +31,15 @@
         require_once "config.php";
 
         $id = trim($_GET["id"]);
-        $query = mysqli_query($conn, "SELECT * FROM info WHERE fullname = '$id'");
+        $query = mysqli_query($conn, "SELECT * FROM info WHERE firstname = '$id'");
 
         if ($customer = mysqli_fetch_assoc($query)) {
             $id   = $customer["id"];
-            $fullname   = $customer["fullname"];
+            $firstname   = $customer["firstname"];
+            $middlename   = $customer["middlename"];
+            $lastname   = $customer["lastname"];
             $address   = $customer["address"];
             $age    = $customer["age"];
-            $birthdate = $customer["birthdate"];
             $contact = $customer["contact"];
             $email = $customer["email"];
         } else {
@@ -64,8 +65,16 @@
                         <p class="form-control-static"><?php echo $id ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Fullname</label>
-                        <p class="form-control-static"><?php echo $fullname ?></p>
+                        <label>Firstname</label>
+                        <p class="form-control-static"><?php echo $firstname ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Middlename</label>
+                        <p class="form-control-static"><?php echo $middlename ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Lastname</label>
+                        <p class="form-control-static"><?php echo $lastname ?></p>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
@@ -76,10 +85,6 @@
                         <p class="form-control-static"><?php echo $age ?></p>
                     </div>
                     <div class="form-group">
-                        <label>Birthdate</label>
-                        <p class="form-control-static"><?php echo $birthdate ?></p>
-                    </div>
-                    <div class="form-group">
                         <label>Contact</label>
                         <p class="form-control-static"><?php echo $contact ?></p>
                     </div>
@@ -87,8 +92,20 @@
                         <label>Email</label>
                         <p class="form-control-static"><?php echo $email ?></p>
                     </div>
-                    <p><a  href="index.php" class="btn btn-primary">Back</a></p>
                     <button id="printButton">Print</button>
+                    <style type="text/css">
+                        .wrapper{
+                            width: 500px;
+                            margin: 0 auto;
+                        }
+                    </style>
+                    <button id="printButton">Back</button>
+                    <style type="text/css">
+                        .wrapper{
+                            width: 500px;
+                            margin: 0 auto;
+                        }
+                    </style>
                 </div>
                 <script src="script.js"></script>
             </div>

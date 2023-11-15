@@ -37,7 +37,9 @@
                                     <thead style='background-color: lightblue';>
                                       <tr >
                                         <th>id</th>
-                                        <th>fullname</th>
+                                        <th>firstname</th>
+                                        <th>middlename</th>
+                                        <th>lastname</th>
                                         <th>address</th>
                                         <th>age</th>
                                         <th>email</th>
@@ -47,14 +49,16 @@
                                 while($customer = mysqli_fetch_array($info)) {
                                     echo "<tr>
                                             <td>" . $customer['id'] . "</td>
-                                            <td>" . $customer['fullname'] . "</td>
+                                            <td>" . $customer['firstname'] . "</td>
+                                            <td>" . $customer['middlename'] . "</td>
+                                            <td>" . $customer['lastname'] . "</td>
                                             <td>" . $customer['address'] . "</td>
                                             <td>" . $customer['age'] . "</td>
                                             <td>" . $customer['email'] . "</td>
                                             <td>
-                                              <a href='read.php?id=". $customer['fullname'] ."' title='View customer' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
-                                              <a href='edit.php?id=". $customer['fullname'] ."' title='Edit customer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
-                                              <a href='delete.php?id=". $customer['fullname'] ."' title='Delete customer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
+                                              <a href='read.php?id=". $customer['firstname'] ."' title='View customer' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
+                                              <a href='edit.php?id=". $customer['firstname'] ."' title='Edit customer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
+                                              <a href='delete.php?id=". $customer['firstname'] ."' title='Delete customer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
                                             </td>
                                           </tr>";
                                 }

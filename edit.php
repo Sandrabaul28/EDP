@@ -1,20 +1,38 @@
 <?php
 require_once "config.php";
 
-$id = $fullname = $address = $age = $birthdate = $contact = $email = "";
-$id_error = $fullname_error = $address_error = $age_error = $birthdate_error = $contact_error = $email_error = "";
+$id = $firstname = $middlename = $lastname = $address = $age = $contact = $email = "";
+$id_error = $firstname_error = $middlelname_error = $lastname_error = $address_error = $age_error = $contact_error = $email_error = "";
 
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
 
     $id = $_POST["id"];
 
-        $fullname = trim($_POST["fullname"]); 
-        if (empty($fullname)) { 
-            $fullname_error = "fullname is required.";
-        } elseif (!filter_var($fullname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))) {
-            $fullname_error = "fullname is invalid.";
+        $firstname = trim($_POST["firstname"]); 
+        if (empty($firstname)) { 
+            $firstname_error = "firstname is required.";
+        } elseif (!filter_var($firstname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))) {
+            $firstname_error = "firstname is invalid.";
         } else {
-            $fullname = $fullname;
+            $firstname = $firstname;
+        }
+
+        $middlename = trim($_POST["middlename"]); 
+        if (empty($middlename)) { 
+            $middlename_error = "middlename is required.";
+        } elseif (!filter_var($middlename, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))) {
+            $middlename_error = "middlename is invalid.";
+        } else {
+            $middlename = $middlename;
+        }
+
+        $lastname = trim($_POST["lastname"]); 
+        if (empty($lastname)) { 
+            $lastname_error = "lastname is required.";
+        } elseif (!filter_var($lastname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))) {
+            $lastname_error = "lastname is invalid.";
+        } else {
+            $lastname = $lastname;
         }
 
         $address = trim($_POST["address"]);
@@ -32,13 +50,6 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
             $age = $age;
         }
 
-        $birthdate = trim($_POST["birthdate"]);
-        if (empty($birthdate)) {
-            $birthdate_error = "birthdate is required.";
-        } else {
-            $birthdate = $birthdate;
-        }
-
         $contact = trim($_POST["contact"]);
         if (empty($contact)){
             $contact_error = "contact is required.";
@@ -54,8 +65,8 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         }
 
     if (empty($id_error_err) && empty($fullname_error) &&
-        empty($address_error_err) && empty($age_error_err) && empty($birthdate_error_err) && empty($contact_error_err) && empty($email_error_err) ) {
-$sql = "UPDATE `info` SET `fullname`= '$fullname',`fullname`= '$fullname', `address`= '$address', `age`= '$age', `birthdate`= '$birthdate' , `contact`= '$contact', `email`= '$email'  WHERE id ='$id'";
+        empty($address_error_err) && empty($age_error_err) && empty($contact_error_err) && empty($email_error_err) ) {
+$sql = "UPDATE `info` SET `firstname`= '$firstname', `middlename`= '$middlename', `lastname`= '$lastname', `address`= '$address', `age`= '$age', `contact`= '$contact', `email`= '$email'  WHERE id ='$id'";
 
           if (mysqli_query($conn, $sql)) {
               header("location: index.php");
@@ -69,14 +80,15 @@ $sql = "UPDATE `info` SET `fullname`= '$fullname',`fullname`= '$fullname', `addr
 } else {
     if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
         $id = trim($_GET["id"]);
-        $query = mysqli_query($conn, "SELECT * FROM info WHERE fullname = '$id'");
+        $query = mysqli_query($conn, "SELECT * FROM info WHERE firstname = '$id'");
 
         if ($customer = mysqli_fetch_assoc($query)) {
             $id   = $customer["id"];
-            $fullname    = $customer["fullname"];
+            $firstname    = $customer["firstname"];
+            $middlename    = $customer["middlename"];
+            $lastname    = $customer["lastname"];
             $address  = $customer["address"];
             $age     = $customer["age"];
-            $birthdate     = $customer["birthdate"];
             $contact     = $customer["contact"];
             $email     = $customer["email"];
         } else {
@@ -117,10 +129,22 @@ $sql = "UPDATE `info` SET `fullname`= '$fullname',`fullname`= '$fullname', `addr
                      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                       <input type="hidden" name="id" value="<?php echo $id; ?>"/>
         
-                        <div class="form-group <?php echo (!empty($fullname_error)) ? 'has-error' : ''; ?>">
-                            <label>Fullname</label>
-                            <input type="text" name="fullname" class="form-control" value="<?php echo $fullname; ?>">
-                            <span class="help-block"><?php echo $fullname_error;?></span>
+                        <div class="form-group <?php echo (!empty($firstname_error)) ? 'has-error' : ''; ?>">
+                            <label>Firstname</label>
+                            <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
+                            <span class="help-block"><?php echo $firstname_error;?></span>
+                        </div>
+
+                        <div class="form-group <?php echo (!empty($middlename_error)) ? 'has-error' : ''; ?>">
+                            <label>Middlename</label>
+                            <input type="text" name="middlename" class="form-control" value="<?php echo $middlename; ?>">
+                            <span class="help-block"><?php echo $middlename_error;?></span>
+                        </div>
+
+                        <div class="form-group <?php echo (!empty($lastname_error)) ? 'has-error' : ''; ?>">
+                            <label>Lastname</label>
+                            <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>">
+                            <span class="help-block"><?php echo $lastname_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($address_error)) ? 'has-error' : ''; ?>">
@@ -133,12 +157,6 @@ $sql = "UPDATE `info` SET `fullname`= '$fullname',`fullname`= '$fullname', `addr
                             <label>Age</label>
                             <input type="text" name="age" class="form-control" value="<?php echo $age; ?>">
                             <span class="help-block"><?php echo $age_error;?></span>
-                        </div>
-
-                        <div class="form-group <?php echo (!empty($birthdate_error)) ? 'has-error' : ''; ?>">
-                            <label>Birthdate</label>
-                            <input type="text" name="birthdate" class="form-control" value="<?php echo $birthdate; ?>">
-                            <span class="help-block"><?php echo $birthdate_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($contact_error)) ? 'has-error' : ''; ?>">
