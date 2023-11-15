@@ -11,8 +11,11 @@
           .wrapper { 
               width: 1200px;
               margin: 0 auto;
-              
           }
+          body{
+            background: lightblue;
+          }
+          
       </style>
   </head>
   <body>
@@ -36,6 +39,7 @@
                             echo "<table class='table table-bordered table-striped'>
                                     <thead style='background-color: lightblue';>
                                       <tr >
+<<<<<<< HEAD
                                         <th>id</th>
                                         <th>firstname</th>
                                         <th>middlename</th>
@@ -43,22 +47,44 @@
                                         <th>address</th>
                                         <th>age</th>
                                         <th>email</th>
+=======
+                                        <th>Id</th>
+                                        <th>First Name</th>
+                                        <th>Middle Name</th>
+                                        <th>Last Name</th>
+                                        <th>Address</th>
+                                        <th>Age</th>
+                                        <th>Action</th>
+
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                                       </tr>
                                     </thead>
                                     <tbody>";
                                 while($customer = mysqli_fetch_array($info)) {
                                     echo "<tr>
                                             <td>" . $customer['id'] . "</td>
+<<<<<<< HEAD
                                             <td>" . $customer['firstname'] . "</td>
                                             <td>" . $customer['middlename'] . "</td>
                                             <td>" . $customer['lastname'] . "</td>
+=======
+                                            <td>" . $customer['fname'] . "</td>
+                                            <td>" . $customer['mname'] . "</td>
+                                            <td>" . $customer['lname'] . "</td>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                                             <td>" . $customer['address'] . "</td>
                                             <td>" . $customer['age'] . "</td>
-                                            <td>" . $customer['email'] . "</td>
+                                            
                                             <td>
+<<<<<<< HEAD
                                               <a href='read.php?id=". $customer['firstname'] ."' title='View customer' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
                                               <a href='edit.php?id=". $customer['firstname'] ."' title='Edit customer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
                                               <a href='delete.php?id=". $customer['firstname'] ."' title='Delete customer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
+=======
+                                              <a href='read.php?id=". $customer['id'] ."' title='View customer' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
+                                              <a href='edit.php?id=". $customer['id'] ."' title='Edit customer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
+                                              <a href='delete.php?id=". $customer['id'] ."' title='Delete customer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                                             </td>
                                           </tr>";
                                 }

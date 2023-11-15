@@ -1,6 +1,7 @@
 <?php
 require_once "config.php"; 
 
+<<<<<<< HEAD
 $id = $firstname = $middlename = $lastname = $address = $age  = $contact = $email = "";
 $id_error = $firstname_error = $middlename_error = $laststname_error = $address_error = $age_error = $contact_error = $email_error = "";
 
@@ -22,6 +23,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $lastname_error = "lastname is required.";
     } else {
         $lastname = $lastname;
+=======
+$id = $fname = $mname = $lname = $address = $age = $birthdate = $contact = $email = "";
+$id_error = $fname_error = $mname_error = $lname_error = $address_error = $age_error = $birthdate_error = $contact_error = $email_error = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $fname = trim($_POST["fname"]); 
+    if (empty($fname)) {
+        $fname_error = "First name is required.";
+    } else {
+        $fname = $fname;
+    }
+
+    $mname = trim($_POST["mname"]); 
+    if (empty($mname)) {
+        $mname_error = "Middle name is required.";
+    } else {
+        $mname = $mname;
+    }
+
+    $lname = trim($_POST["lname"]); 
+    if (empty($lname)) {
+        $lname_error = "Lastname is required.";
+    } else {
+        $lname = $lname;
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
     }
 
     $address = trim($_POST["address"]);
@@ -61,8 +87,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $email;
     }
 
+<<<<<<< HEAD
     if (empty($fullname_error) && empty($address_error) && empty($age_error) && empty($birthdate_error) && empty($contact_error) && empty($email_error)) {
           $sql = "INSERT INTO `info` (id,`firstname`, `middlename`, `lastname`, `address`, `age`, `contact`,  `email`) VALUES (id,'firstname', '$middlename', '$lastname', '$address', '$age', '$contact', '$email')";
+=======
+    if (empty($fname_error) && empty($mname_error) && empty($lname_error) && empty($address_error) && empty($age_error) && empty($birthdate_error) && empty($contact_error) && empty($email_error)) {
+          $sql = "INSERT INTO `info` (id,`fname`,`mname`, `lname`, `address`, `age`, `birthdate`, `contact`,  `email`) VALUES (id,'$fname','$mname','$lname', '$address', '$age', '$birthdate', '$contact', '$email')";
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
 
 
     if (mysqli_query($conn, $sql)) {
@@ -99,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
+<<<<<<< HEAD
                         <div class="form-group <?php echo (!empty($firstname_error)) ? 'has-error' : ''; ?>">
                             <label>Firstname:</label>
                             <input type="text" name="firstname" class="form-control" value="">
@@ -114,30 +146,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Lastname:</label>
                             <input type="text" name="lastname" class="form-control" value="">
                             <span class="help-block"><?php echo $lastname_error;?></span>
+=======
+                        <div class="form-group <?php echo (!empty($fullname_error)) ? 'has-error' : ''; ?>">
+                            <label>First Name:</label>
+                            <input type="text" name="fname" class="form-control" value="" placeholder="First Name">
+                            <span class="help-block"><?php echo $fname_error;?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($fullname_error)) ? 'has-error' : ''; ?>">
+                            <label>Middle Name:</label>
+                            <input type="text" name="mname" class="form-control" value="" placeholder="Middle Name">
+                            <span class="help-block"><?php echo $mname_error;?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($fullname_error)) ? 'has-error' : ''; ?>">
+                            <label>Last Name:</label>
+                            <input type="text" name="lname" class="form-control" value="" placeholder="Last Name">
+                            <span class="help-block"><?php echo $lname_error;?></span>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                         </div>
 
                         <div class="form-group <?php echo (!empty($address_error)) ? 'has-error' : ''; ?>">
                             <label>Address:</label>
-                            <input type="text" name="address" class="form-control" value="">
+                            <input type="text" name="address" class="form-control" value="" placeholder="Address">
                             <span class="help-block"><?php echo $address_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($age_error)) ? 'has-error' : ''; ?>">
                             <label>Age:</label>
-                            <input type="text" name="age" class="form-control" value="">
+                            <input type="text" name="age" class="form-control" value="" placeholder="Age">
                             <span class="help-block"><?php echo $age_error;?></span>
                         </div>
 
+<<<<<<< HEAD
+=======
+                        <div class="form-group <?php echo (!empty($birthdate_error)) ? 'has-error' : ''; ?>">
+                            <label>Birth Date:</label>
+                            <input type="date" name="birthdate" class="form-control" value="" placeholder="Birthdate">
+                            <span class="help-block"><?php echo $birthdate_error;?></span>
+                        </div>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
 
                         <div class="form-group <?php echo (!empty($contact_error)) ? 'has-error' : ''; ?>">
                             <label>Contact:</label>
-                            <input type="number" name="contact" class="form-control" value="">
+                            <input type="number" name="contact" class="form-control" value="" placeholder="Contact">
                             <span class="help-block"><?php echo $contact_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($email_error)) ? 'has-error' : ''; ?>">
                             <label>Email:</label>
-                            <input type="email" name="email" class="form-control" value="">
+                            <input type="email" name="email" class="form-control" value="" placeholder="Email">
                             <span class="help-block"><?php echo $email_error;?></span>
                         </div>
 

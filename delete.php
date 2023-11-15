@@ -3,7 +3,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
     require_once "config.php";
     $id = $_POST["id"];
 
-    $query = "DELETE FROM info WHERE fullname = '$id'";
+    $query = "DELETE FROM info WHERE id = '$id'";
     
  
     if (mysqli_query($conn, $query)) {

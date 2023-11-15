@@ -5,23 +5,28 @@
     <title>View Record</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
+        body{
+            background: #9f9;
+        }
+        
+        label, p{
+            color: black;
+        }
         .wrapper{
             width: 1200px;
             margin: 0 auto;
         }
-        #printButton {
-            display: block;
-        }
-
         /* Hide the print button when printing */
         @media print {
             #printButton {
                 display: none;
             }
         }
-        @media .btn-back {
+        @media print{
+        .btn, .btn-primary {
                 display: none !important;
         }
+    }
 
     </style>
 </head>
@@ -31,6 +36,7 @@
         require_once "config.php";
 
         $id = trim($_GET["id"]);
+<<<<<<< HEAD
         $query = mysqli_query($conn, "SELECT * FROM info WHERE firstname = '$id'");
 
         if ($customer = mysqli_fetch_assoc($query)) {
@@ -38,6 +44,15 @@
             $firstname   = $customer["firstname"];
             $middlename   = $customer["middlename"];
             $lastname   = $customer["lastname"];
+=======
+        $query = mysqli_query($conn, "SELECT * FROM info WHERE id = '$id'");
+
+        if ($customer = mysqli_fetch_assoc($query)) {
+            $id   = $customer["id"];
+            $fname   = $customer["fname"];
+            $mname   = $customer["mname"];
+            $lname   = $customer["lname"];
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
             $address   = $customer["address"];
             $age    = $customer["age"];
             $contact = $customer["contact"];
@@ -65,6 +80,7 @@
                         <p class="form-control-static"><?php echo $id ?></p>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <label>Firstname</label>
                         <p class="form-control-static"><?php echo $firstname ?></p>
                     </div>
@@ -75,6 +91,18 @@
                     <div class="form-group">
                         <label>Lastname</label>
                         <p class="form-control-static"><?php echo $lastname ?></p>
+=======
+                        <label>First Name</label>
+                        <p class="form-control-static"><?php echo $fname ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name</label>
+                        <p class="form-control-static"><?php echo $mname ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <p class="form-control-static"><?php echo $lname ?></p>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                     </div>
                     <div class="form-group">
                         <label>Address</label>
@@ -92,6 +120,7 @@
                         <label>Email</label>
                         <p class="form-control-static"><?php echo $email ?></p>
                     </div>
+<<<<<<< HEAD
                     <button id="printButton">Print</button>
                     <style type="text/css">
                         .wrapper{
@@ -106,6 +135,10 @@
                             margin: 0 auto;
                         }
                     </style>
+=======
+                    <p><a href="index.php" class="btn btn-primary">Back</a></p>
+                    <button id="printButton" class="btn btn-danger">Print</button>
+>>>>>>> 20a85959dee57c0d7a70625a38cf4e83d22e8363
                 </div>
                 <script src="script.js"></script>
             </div>
